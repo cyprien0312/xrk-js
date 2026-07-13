@@ -1,6 +1,6 @@
 {
   "name": "aim-xrk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pure TypeScript parser for AiM XRK/XRZ motorsports telemetry files — zero dependencies, runs in browsers and Node.js",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,9 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:esm": "npm run build && node --input-type=module -e \"import('./dist/index.js').then(m => { if (typeof m.parseXrk !== 'function') throw new Error('parseXrk missing'); console.log('Node ESM import OK'); })\"",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "aim",

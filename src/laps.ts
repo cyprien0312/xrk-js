@@ -1,8 +1,8 @@
 // Lap extraction — port of aim_xrk.pyx `_get_laps`.
 
-import { tokdec } from "./constants";
-import { findLaps, lla2ecef } from "./gps";
-import type { ChannelDef, MessageMap, XrkLap } from "./types";
+import { tokdec } from "./constants.js";
+import { findLaps, lla2ecef } from "./gps.js";
+import type { ChannelDef, MessageMap, XrkLap } from "./types.js";
 
 const TOK_LAP = tokdec("LAP");
 const TOK_TRK = tokdec("TRK");

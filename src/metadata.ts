@@ -1,7 +1,7 @@
 // Session metadata extraction — port of aim_xrk.pyx `_get_metadata`.
 
-import { LOGGER_MODELS, tokdec } from "./constants";
-import type { ChannelDef, MessageMap, Msg } from "./types";
+import { LOGGER_MODELS, tokdec } from "./constants.js";
+import type { ChannelDef, MessageMap, Msg } from "./types.js";
 
 function last(messages: MessageMap, tok: number): Msg | undefined {
   const list = messages.get(tok);

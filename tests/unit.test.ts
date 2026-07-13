@@ -88,3 +88,24 @@ describe("gps math", () => {
     }
   });
 });
+
+describe("package hygiene", () => {
+  it("uses explicit .js extensions on all relative imports (Node ESM requires them)", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    const { join, dirname } = await import("node:path");
+    const { fileURLToPath } = await import("node:url");
+    const srcDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src");
+    const offenders: string[] = [];
+    for (const file of readdirSync(srcDir)) {
+      if (!file.endsWith(".ts")) continue;
+      const text = readFileSync(join(srcDir, file), "utf8");
+      // Match `from "./x"` / `from "../x"` without a .js (or other) extension.
+      const re = /from\s+"(\.\.?\/[^"]+)"/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(text))) {
+        if (!/\.[a-z]+$/.test(m[1])) offenders.push(`${file}: ${m[1]}`);
+      }
+    }
+    expect(offenders, `extensionless relative imports break Node ESM:\n${offenders.join("\n")}`).toEqual([]);
+  });
+});

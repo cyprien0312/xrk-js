@@ -10,18 +10,18 @@
 //   log.laps; // [{num, startTime, endTime}, ...] in ms
 //   log.metadata; // { Driver, Vehicle, Venue, ... }
 
-import { processChannel, processGroup } from "./channels";
-import { decompressIfZlib } from "./inflate";
-import { decodeGnfi, decodeGps, fixGpsTimingGaps } from "./gps";
-import { getLaps } from "./laps";
-import { getMetadata } from "./metadata";
-import { computeTimeBounds, parseRaw } from "./parser";
-import type { ChannelDef, XrkChannel, XrkLap, XrkLog } from "./types";
+import { processChannel, processGroup } from "./channels.js";
+import { decompressIfZlib } from "./inflate.js";
+import { decodeGnfi, decodeGps, fixGpsTimingGaps } from "./gps.js";
+import { getLaps } from "./laps.js";
+import { getMetadata } from "./metadata.js";
+import { computeTimeBounds, parseRaw } from "./parser.js";
+import type { ChannelDef, XrkChannel, XrkLap, XrkLog } from "./types.js";
 
-export { decompressIfZlib, isZlib } from "./inflate";
-export { ecef2lla, lla2ecef } from "./gps";
-export { tokdec, tokenc, GPS_CHANNEL_NAMES } from "./constants";
-export type { XrkChannel, XrkLap, XrkLog, SampleArray } from "./types";
+export { decompressIfZlib, isZlib } from "./inflate.js";
+export { ecef2lla, lla2ecef } from "./gps.js";
+export { tokdec, tokenc, GPS_CHANNEL_NAMES } from "./constants.js";
+export type { XrkChannel, XrkLap, XrkLog, SampleArray } from "./types.js";
 
 /** Channels excluded from the output (pyx parity). */
 const EXCLUDED_CHANNELS = new Set(["StrtRec", "Master Clk"]);

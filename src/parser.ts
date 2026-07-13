@@ -7,7 +7,7 @@
 // Unparseable bytes are skipped one at a time (bad-byte recovery), matching
 // the reference implementation.
 
-import { nulltermString, tokdec, UNIT_MAP, resolveFunction } from "./constants";
+import { nulltermString, tokdec, UNIT_MAP, resolveFunction } from "./constants.js";
 import {
   Accum,
   ByteVec,
@@ -16,7 +16,7 @@ import {
   MessageMap,
   Msg,
   newAccum,
-} from "./types";
+} from "./types.js";
 
 const OP_G = 0x4728; // "(G"
 const OP_S = 0x5328; // "(S"

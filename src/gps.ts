@@ -1,8 +1,8 @@
 // GPS decoding and processing — port of aim_xrk.pyx `_decode_gps`/`_decode_gnfi`
 // and libxrk's gps.py (ecef2lla, find_laps, fix_gps_timing_gaps).
 
-import { GPS_CHANNEL_NAMES } from "./constants";
-import type { ChannelDef, XrkLap } from "./types";
+import { GPS_CHANNEL_NAMES } from "./constants.js";
+import type { ChannelDef, XrkLap } from "./types.js";
 
 const A = 6378137.0; // WGS84 semi-major axis
 const E = 8.181919084261345e-2; // WGS84 eccentricity

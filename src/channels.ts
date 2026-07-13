@@ -7,9 +7,9 @@ import {
   STYPE_SIZE,
   fp16ToFloat,
   type DecoderSpec,
-} from "./constants";
-import type { RawParse } from "./parser";
-import type { ChannelDef, GroupDef, SampleArray } from "./types";
+} from "./constants.js";
+import type { RawParse } from "./parser.js";
+import type { ChannelDef, GroupDef, SampleArray } from "./types.js";
 
 /** Gear lookup for decoder 15: ASCII 'N'→0, '1'..'6'→1..6, else identity. */
 function gearLookup(v: number): number {
