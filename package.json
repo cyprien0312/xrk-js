@@ -1,5 +1,5 @@
 {
-  "name": "xrk-js",
+  "name": "aim-xrk",
   "version": "0.1.0",
   "description": "Pure TypeScript parser for AiM XRK/XRZ motorsports telemetry files — zero dependencies, runs in browsers and Node.js",
   "license": "MIT",

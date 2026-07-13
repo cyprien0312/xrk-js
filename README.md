@@ -1,6 +1,10 @@
 # xrk-js
 
+[![npm](https://img.shields.io/npm/v/aim-xrk.svg)](https://www.npmjs.com/package/aim-xrk)
+
 Pure TypeScript parser for **AiM XRK/XRZ** motorsports telemetry files. Zero dependencies — runs in browsers, Node.js, Deno, and Bun. No AiM DLL required.
+
+> npm package: **`aim-xrk`** &nbsp;·&nbsp; repository: `xrk-js`
 
 XRK is the native log format of [AiM](https://www.aim-sportline.com/) data loggers (MXP, MXm, MXG, EVO, SoloDL, ...). Until recently the only way to read it was AiM's proprietary Windows-only `MatLabXRK` DLL. [libxrk](https://github.com/m3rlin45/libxrk) reverse-engineered the format into an open Python library; **xrk-js is a faithful TypeScript port of libxrk's parser**, cross-validated sample-by-sample against it on real logger files.
 
@@ -17,13 +21,13 @@ XRK is the native log format of [AiM](https://www.aim-sportline.com/) data logge
 ## Install
 
 ```bash
-npm install xrk-js
+npm install aim-xrk
 ```
 
 ## Usage
 
 ```ts
-import { parseXrk } from "xrk-js";
+import { parseXrk } from "aim-xrk";
 
 // Node
 import { readFileSync } from "node:fs";
