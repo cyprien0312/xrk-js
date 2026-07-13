@@ -1,0 +1,4431 @@
+{
+ "channels": {
+  "BRAKE": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "Brake Circuit Pressure",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     2857.0,
+     2907.0,
+     2957.0,
+     3007.0,
+     3057.0
+    ],
+    "last": [
+     1501271.0,
+     1501321.0,
+     1501371.0,
+     1501421.0,
+     1501471.0
+    ],
+    "max": 1501471.0,
+    "min": 2857.0,
+    "n": 29784,
+    "nan_count": 0,
+    "sum": 22399843995.0
+   },
+   "units": "bar",
+   "values": {
+    "first": [
+     0.021484375,
+     0.03582763671875,
+     0.032745361328125,
+     0.0194091796875,
+     0.0189056396484375
+    ],
+    "last": [
+     -0.00156402587890625,
+     0.0128021240234375,
+     -0.00861358642578125,
+     -0.022735595703125,
+     -0.01551055908203125
+    ],
+    "max": 13.7890625,
+    "min": -0.5732421875,
+    "n": 29784,
+    "nan_count": 0,
+    "sum": 43260.98299884796
+   }
+  },
+  "ECU_AAT": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Temperature",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     129.875,
+     129.875,
+     129.875,
+     129.875,
+     129.875
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 129.875,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_ANGLE_Y": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Angle",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_ANGLE_Z": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Angle",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_ATS": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Temperature",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     30.890625,
+     30.890625,
+     30.890625,
+     30.890625,
+     30.890625
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 30.890625,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_BAP": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Pressure",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "bar",
+   "values": {
+    "first": [
+     0.978515625,
+     0.978515625,
+     0.978515625,
+     0.978515625,
+     0.978515625
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 1.0341796875,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_BOARD_TEMP": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Temperature",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     36.59375,
+     36.59375,
+     36.59375,
+     36.59375,
+     36.59375
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 51.78125,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_BRAKE_REAR": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "bar",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 3248067.0
+   }
+  },
+  "ECU_CLUTCH_SLIP": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     14.1953125,
+     16.390625,
+     18.390625,
+     19.890625,
+     22.5
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 100.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_CUT_LEVEL": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 100.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_DBW_STATE": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     3.0,
+     3.0,
+     3.0,
+     3.0,
+     3.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 3.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -659938.0
+   }
+  },
+  "ECU_DEMAND": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 99.75,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_DRUM": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 6.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_DRUM_V": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Voltage",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "mV",
+   "values": {
+    "first": [
+     754.0,
+     754.0,
+     753.0,
+     754.0,
+     754.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 4272.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_ENG_FUNCTION": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 49.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -90556.0
+   }
+  },
+  "ECU_E_REVLSB": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     3.0,
+     3.0,
+     3.0,
+     3.0,
+     4.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 32763.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 458761263.0
+   }
+  },
+  "ECU_GAS": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     -0.7998046875,
+     -0.7998046875,
+     -0.7998046875,
+     -0.7998046875,
+     -0.7998046875
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 99.75,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_GAS_DIAG": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 0.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -749629.0
+   }
+  },
+  "ECU_GEAR": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Gear",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "gear",
+   "values": {
+    "first": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "last": [
+     -12290.0,
+     -12290.0,
+     -12290.0,
+     -12290.0,
+     -12290.0
+    ],
+    "max": 6.0,
+    "min": -12290.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -654511.0
+   }
+  },
+  "ECU_GEAR_RAW": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     2.0,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 782.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22594505.0
+   }
+  },
+  "ECU_GSW_DW": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 6.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_INJ_COR_LAM": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 1.1494140625,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_LAMBDA": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Lambda",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "lambda",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 5.98046875,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_LAMBDA_DIAG": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     136.0,
+     136.0,
+     136.0,
+     136.0,
+     136.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 18568.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -357581.0
+   }
+  },
+  "ECU_LAMBDA_TEMP": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Temperature",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 1200.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 23871292.0
+   }
+  },
+  "ECU_LOAD_CELL": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     11.0,
+     10.0,
+     10.0,
+     11.0,
+     12.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 940.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_MAP": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "bar",
+   "values": {
+    "first": [
+     0.9248046875,
+     0.9248046875,
+     0.9248046875,
+     0.9248046875,
+     0.9248046875
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.97265625,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_OPS": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "bar",
+   "values": {
+    "first": [
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 4.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_RPM": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Engine RPM",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "rpm",
+   "values": {
+    "first": [
+     445.0,
+     445.0,
+     445.0,
+     445.0,
+     445.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 15817.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 359416101.0
+   }
+  },
+  "ECU_SPEED_REAROPT": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Rear Wheel Speed",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "km/h",
+   "values": {
+    "first": [
+     2.69921875,
+     2.69921875,
+     2.69921875,
+     2.599609375,
+     2.3984375
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 267.5,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_STR_FUNCTION": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 56.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -609741.0
+   }
+  },
+  "ECU_TCPID_ERROR": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TCPID_INPUT": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TCPID_MAINT": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TCPID_OUTPUT": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TCPID_TARGET": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TC_TRIMMER": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 3248067.0
+   }
+  },
+  "ECU_THROTTLE": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Angle",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     0.5,
+     0.7998046875,
+     1.0,
+     1.099609375,
+     1.2998046875
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 51.375,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TIME_LSB": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Time",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "ms",
+   "values": {
+    "first": [
+     5150.0,
+     5150.0,
+     5270.0,
+     5270.0,
+     5390.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 32760.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 489297021.0
+   }
+  },
+  "ECU_TPS_DIAG": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 0.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -749629.0
+   }
+  },
+  "ECU_TPS_HAND": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percentage Throttle Load",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     8.09375,
+     9.296875,
+     9.1953125,
+     9.1953125,
+     9.296875
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 100.75,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TPS_TARGET": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percentage Throttle Load",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     9.0,
+     9.0,
+     9.0,
+     9.0,
+     9.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 99.75,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_TRUMP_PWM": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     -25.0,
+     -25.0,
+     -25.0,
+     -25.0,
+     -25.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 100.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_VBAT": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Voltage",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "mV",
+   "values": {
+    "first": [
+     10552.0,
+     10552.0,
+     10552.0,
+     12344.0,
+     12344.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 14624.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_VREF1": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Voltage",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "mV",
+   "values": {
+    "first": [
+     5000.0,
+     5000.0,
+     5000.0,
+     5000.0,
+     5000.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 5008.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_VREF2": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Voltage",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "mV",
+   "values": {
+    "first": [
+     5000.0,
+     5000.0,
+     5000.0,
+     5000.0,
+     5000.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 5008.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_VRPM_FRONT": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     366.0,
+     366.0,
+     118.0,
+     326.0,
+     326.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 344266940.0
+   }
+  },
+  "ECU_VRPM_REAR": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     354.0,
+     356.0,
+     350.0,
+     336.0,
+     319.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 361788626.0
+   }
+  },
+  "ECU_VRPM_REAROPT": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     354.0,
+     356.0,
+     350.0,
+     336.0,
+     319.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 368563111.0
+   }
+  },
+  "ECU_WCPID_IN": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Angle",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_WCPID_OUT": {
+   "dec_pts": 2,
+   "device_tag": "0",
+   "function": "Percent",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_WCPID_TG": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Angle",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 0.0,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_WC_STATE": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0,
+     53247.0
+    ],
+    "max": 53247.0,
+    "min": 0.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 3248067.0
+   }
+  },
+  "ECU_WORK_ACT": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 1.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": -749359.0
+   }
+  },
+  "ECU_WORK_LSB": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     4373.0,
+     4373.0,
+     4373.0,
+     4373.0,
+     4373.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 8727.0,
+    "min": -12289.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 131278736.0
+   }
+  },
+  "ECU_WORK_MSB": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Number",
+   "interpolate": false,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     22400.0,
+     22400.0,
+     22400.0,
+     22400.0,
+     22400.0
+    ],
+    "last": [
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0,
+     -12289.0
+    ],
+    "max": 22400.0,
+    "min": -26752.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 654394179.0
+   }
+  },
+  "ECU_W_SPD_F": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Rear Wheel Speed",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "km/h",
+   "values": {
+    "first": [
+     2.798828125,
+     2.798828125,
+     0.89990234375,
+     0.89990234375,
+     2.5
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 259.5,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "ECU_W_SPD_R": {
+   "dec_pts": 0,
+   "device_tag": "0",
+   "function": "Rear Wheel Speed",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "km/h",
+   "values": {
+    "first": [
+     2.69921875,
+     2.69921875,
+     2.69921875,
+     2.599609375,
+     2.3984375
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 267.5,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "External Voltage": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "Battery Voltage",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     3492.0,
+     4542.0,
+     5592.0,
+     6642.0,
+     7692.0
+    ],
+    "last": [
+     1496392.0,
+     1497442.0,
+     1498492.0,
+     1499542.0,
+     1500592.0
+    ],
+    "max": 1500592.0,
+    "min": 3492.0,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 1073022238.0
+   },
+   "units": "V",
+   "values": {
+    "first": [
+     12.399999618530273,
+     12.399999618530273,
+     12.399999618530273,
+     12.399999618530273,
+     12.399999618530273
+    ],
+    "last": [
+     12.392000198364258,
+     12.392000198364258,
+     12.407999992370605,
+     12.399999618530273,
+     12.399999618530273
+    ],
+    "max": 12.407999992370605,
+    "min": 12.392000198364258,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 17698.55166530609
+   }
+  },
+  "FF": {
+   "dec_pts": 0,
+   "device_tag": "",
+   "function": "Distance",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     2842.0,
+     2847.0,
+     2852.0,
+     2857.0,
+     2862.0
+    ],
+    "last": [
+     1501461.0,
+     1501466.0,
+     1501471.0,
+     1501476.0,
+     1501481.0
+    ],
+    "max": 1501481.0,
+    "min": 2842.0,
+    "n": 297836,
+    "nan_count": 0,
+    "sum": 223994686690.0
+   },
+   "units": "mm",
+   "values": {
+    "first": [
+     39.5,
+     39.5,
+     39.5,
+     39.5,
+     39.46875
+    ],
+    "last": [
+     42.84375,
+     42.90625,
+     42.84375,
+     42.90625,
+     42.8125
+    ],
+    "max": 123.75,
+    "min": 1.484375,
+    "n": 297836,
+    "nan_count": 0,
+    "sum": 15549202.84765625
+   }
+  },
+  "GPS Altitude": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "m",
+   "values": {
+    "first": [
+     439.9926376511979,
+     439.74733233798366,
+     439.24948255596735,
+     438.60896397009196,
+     438.2852308558604
+    ],
+    "last": [
+     424.8934517685765,
+     424.9327517866337,
+     424.90896801878677,
+     424.94251031316327,
+     424.94019345056466
+    ],
+    "max": 469.60675673582256,
+    "min": 408.36419264012676,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 2630378.62170853
+   }
+  },
+  "GPS Latitude": {
+   "dec_pts": 4,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     41.078657463820484,
+     41.0786589113643,
+     41.0786629382788,
+     41.078661396015114,
+     41.07866011464381
+    ],
+    "last": [
+     41.078156649104315,
+     41.07817079347178,
+     41.07818483573609,
+     41.07819878640965,
+     41.078212779639976
+    ],
+    "max": 41.08429163885674,
+    "min": 41.07436806668009,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 246270.80480690062
+   }
+  },
+  "GPS Longitude": {
+   "dec_pts": 4,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "deg",
+   "values": {
+    "first": [
+     -0.19879664517997964,
+     -0.19879475332850946,
+     -0.19879763672606449,
+     -0.19879670008938688,
+     -0.19879492144655478
+    ],
+    "last": [
+     -0.1978568955338871,
+     -0.19788240055541415,
+     -0.19790755026626172,
+     -0.19793234096732565,
+     -0.19795665695797618
+    ],
+    "max": -0.19398060351296734,
+    "min": -0.21289897512879785,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": -1229.5666166919484
+   }
+  },
+  "GPS Speed": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "m/s",
+   "values": {
+    "first": [
+     0.32062439083762795,
+     0.45232731511594565,
+     0.41060930335295615,
+     0.4043513323831146,
+     0.4026164427839479
+    ],
+    "last": [
+     10.721720943952981,
+     10.62936028178554,
+     10.497132941903708,
+     10.417048526334126,
+     10.277013184773093
+    ],
+    "max": 72.83004050527502,
+    "min": 0.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 240295.43462613403
+   }
+  },
+  "GPS_Fix": {
+   "dec_pts": 0,
+   "device_tag": "",
+   "function": "",
+   "interpolate": false,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     3.0,
+     3.0,
+     3.0,
+     3.0,
+     3.0
+    ],
+    "last": [
+     3.0,
+     3.0,
+     3.0,
+     3.0,
+     3.0
+    ],
+    "max": 3.0,
+    "min": 3.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 17985.0
+   }
+  },
+  "GPS_InlineAcc": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "g",
+   "values": {
+    "first": [
+     0.0,
+     0.0537014976143837,
+     -0.01687539927661419,
+     -0.0025722479913383722,
+     -0.0007368712103925645
+    ],
+    "last": [
+     -0.04815460368990898,
+     -0.03765980154275894,
+     -0.05391532555222511,
+     -0.03265419602394104,
+     -0.05709901824593544
+    ],
+    "max": 1.0180095434188843,
+    "min": -1.6758118867874146,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4.105133863442461
+   }
+  },
+  "GPS_LateralAcc": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "g",
+   "values": {
+    "first": [
+     0.0,
+     -0.08177391439676285,
+     -0.09252218902111053,
+     -0.03967180848121643,
+     0.08758623152971268
+    ],
+    "last": [
+     -0.03588559105992317,
+     -0.03630649298429489,
+     -0.01098443940281868,
+     0.017571255564689636,
+     0.04579158127307892
+    ],
+    "max": 1.8236279487609863,
+    "min": -1.701093077659607,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": -880.9548051484271
+   }
+  },
+  "GPS_Position_Accuracy": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "m",
+   "values": {
+    "first": [
+     9.420000076293945,
+     8.430000305175781,
+     7.639999866485596,
+     7.0,
+     6.46999979019165
+    ],
+    "last": [
+     1.8600000143051147,
+     1.8600000143051147,
+     1.8600000143051147,
+     1.8600000143051147,
+     1.8700000047683716
+    ],
+    "max": 9.420000076293945,
+    "min": 1.159999966621399,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 11048.89000403881
+   }
+  },
+  "GPS_Satellites": {
+   "dec_pts": 0,
+   "device_tag": "",
+   "function": "",
+   "interpolate": false,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     7.0,
+     7.0,
+     7.0,
+     7.0,
+     7.0
+    ],
+    "last": [
+     10.0,
+     10.0,
+     10.0,
+     10.0,
+     10.0
+    ],
+    "max": 10.0,
+    "min": 7.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 58330.0
+   }
+  },
+  "GPS_Velocity_Accuracy": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "m/s",
+   "values": {
+    "first": [
+     0.3100000023841858,
+     0.28999999165534973,
+     0.20999999344348907,
+     0.17000000178813934,
+     0.20999999344348907
+    ],
+    "last": [
+     0.15000000596046448,
+     0.15000000596046448,
+     0.14000000059604645,
+     0.14000000059604645,
+     0.14000000059604645
+    ],
+    "max": 0.4699999988079071,
+    "min": 0.10999999940395355,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 1161.4700021073222
+   }
+  },
+  "GPS_Yaw_Rate": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "",
+   "interpolate": true,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "deg/s",
+   "values": {
+    "first": [
+     0.0,
+     -101.61402130126953,
+     -126.65103912353516,
+     -55.146095275878906,
+     122.27452087402344
+    ],
+    "last": [
+     -1.8812531232833862,
+     -1.9198567867279053,
+     -0.5881645083427429,
+     0.9480904340744019,
+     2.5044384002685547
+    ],
+    "max": 680.4343872070312,
+    "min": -714.9141845703125,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": -16151.515607519832
+   }
+  },
+  "GPS_pDOP": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "",
+   "interpolate": false,
+   "source_type": 0,
+   "timecodes": {
+    "first": [
+     2860.0,
+     3110.0,
+     3362.0,
+     3610.0,
+     3850.0
+    ],
+    "last": [
+     1500221.0,
+     1500471.0,
+     1500721.0,
+     1500971.0,
+     1501221.0
+    ],
+    "max": 1501221.0,
+    "min": 2860.0,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 4508448075.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     2.4600000381469727,
+     2.680000066757202,
+     2.680000066757202,
+     2.680000066757202,
+     2.4600000381469727
+    ],
+    "last": [
+     1.7200000286102295,
+     1.7200000286102295,
+     1.7200000286102295,
+     1.7200000286102295,
+     1.7200000286102295
+    ],
+    "max": 2.990000009536743,
+    "min": 1.5099999904632568,
+    "n": 5995,
+    "nan_count": 0,
+    "sum": 10008.869996190071
+   }
+  },
+  "InlineAcc": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "Inline Acceleration",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     1600.0,
+     1620.0,
+     1640.0,
+     1660.0,
+     1680.0
+    ],
+    "last": [
+     1501221.0,
+     1501241.0,
+     1501261.0,
+     1501281.0,
+     1501301.0
+    ],
+    "max": 1501301.0,
+    "min": 1600.0,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": 7219166791.0
+   },
+   "units": "g",
+   "values": {
+    "first": [
+     0.003627777099609375,
+     -0.0018310546875,
+     -0.00885772705078125,
+     -0.010528564453125,
+     -0.0018253326416015625
+    ],
+    "last": [
+     -0.08038330078125,
+     -0.09503173828125,
+     -0.09454345703125,
+     -0.08123779296875,
+     -0.06622314453125
+    ],
+    "max": 2.296875,
+    "min": -2.328125,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": 304.4028112888336
+   }
+  },
+  "LateralAcc": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "Lateral Acceleration",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     1600.0,
+     1620.0,
+     1640.0,
+     1660.0,
+     1680.0
+    ],
+    "last": [
+     1501221.0,
+     1501241.0,
+     1501261.0,
+     1501281.0,
+     1501301.0
+    ],
+    "max": 1501301.0,
+    "min": 1600.0,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": 7219166791.0
+   },
+   "units": "g",
+   "values": {
+    "first": [
+     -0.0278472900390625,
+     -0.017547607421875,
+     -0.011474609375,
+     -0.01042938232421875,
+     -0.0163726806640625
+    ],
+    "last": [
+     -0.02301025390625,
+     -0.0244293212890625,
+     -0.02142333984375,
+     -0.01386260986328125,
+     -0.005718231201171875
+    ],
+    "max": 2.09375,
+    "min": -1.7568359375,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": -1.28952556848526
+   }
+  },
+  "Logger Temperature": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "Device Temperature",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     3492.0,
+     4542.0,
+     5592.0,
+     6642.0,
+     7692.0
+    ],
+    "last": [
+     1496392.0,
+     1497442.0,
+     1498492.0,
+     1499542.0,
+     1500592.0
+    ],
+    "max": 1500592.0,
+    "min": 3492.0,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 1073022238.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     28.0,
+     28.0,
+     28.0,
+     28.09375,
+     28.09375
+    ],
+    "last": [
+     28.0,
+     28.0,
+     28.0,
+     28.0,
+     28.0
+    ],
+    "max": 29.5,
+    "min": 28.0,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 40573.96875
+   }
+  },
+  "Luminosity": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "Device Brightness",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     3492.0,
+     4542.0,
+     5592.0,
+     6642.0,
+     7692.0
+    ],
+    "last": [
+     1496392.0,
+     1497442.0,
+     1498492.0,
+     1499542.0,
+     1500592.0
+    ],
+    "max": 1500592.0,
+    "min": 3492.0,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 1073022238.0
+   },
+   "units": "%",
+   "values": {
+    "first": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "last": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "max": 100.0,
+    "min": 87.125,
+    "n": 1427,
+    "nan_count": 0,
+    "sum": 142626.75
+   }
+  },
+  "MAPA LLUVIA": {
+   "dec_pts": 0,
+   "device_tag": "@AIM",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 4,
+   "timecodes": {
+    "first": [
+     2956.0,
+     3020.0,
+     3070.0,
+     3120.0,
+     3179.0
+    ],
+    "last": [
+     1501220.0,
+     1501286.0,
+     1501336.0,
+     1501409.0,
+     1501475.0
+    ],
+    "max": 1501475.0,
+    "min": 2956.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 17578728905.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max": 1.0,
+    "min": 0.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 214.0
+   }
+  },
+  "PitchRate": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "Pitch Rate",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     0.0,
+     20.0,
+     40.0,
+     60.0,
+     80.0
+    ],
+    "last": [
+     1501127.0,
+     1501147.0,
+     1501167.0,
+     1501187.0,
+     1501207.0
+    ],
+    "max": 1501207.0,
+    "min": 0.0,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": 7198078089.0
+   },
+   "units": "deg/s",
+   "values": {
+    "first": [
+     -0.08648681640625,
+     -0.018646240234375,
+     0.013763427734375,
+     0.00701141357421875,
+     -0.0306549072265625
+    ],
+    "last": [
+     1.2265625,
+     1.2587890625,
+     1.244140625,
+     1.2119140625,
+     1.193359375
+    ],
+    "max": 32.9375,
+    "min": -20.828125,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": 65238.57600593567
+   }
+  },
+  "RS": {
+   "dec_pts": 0,
+   "device_tag": "",
+   "function": "Distance",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     2842.0,
+     2847.0,
+     2852.0,
+     2857.0,
+     2862.0
+    ],
+    "last": [
+     1501461.0,
+     1501466.0,
+     1501471.0,
+     1501476.0,
+     1501481.0
+    ],
+    "max": 1501481.0,
+    "min": 2842.0,
+    "n": 297836,
+    "nan_count": 0,
+    "sum": 223994686690.0
+   },
+   "units": "mm",
+   "values": {
+    "first": [
+     12.8046875,
+     12.875,
+     12.8671875,
+     12.8515625,
+     12.8828125
+    ],
+    "last": [
+     13.484375,
+     13.453125,
+     13.4921875,
+     13.453125,
+     13.484375
+    ],
+    "max": 35.0,
+    "min": -0.187744140625,
+    "n": 297836,
+    "nan_count": 0,
+    "sum": 5040774.153301239
+   }
+  },
+  "RollRate": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "Roll Rate",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     0.0,
+     20.0,
+     40.0,
+     60.0,
+     80.0
+    ],
+    "last": [
+     1501127.0,
+     1501147.0,
+     1501167.0,
+     1501187.0,
+     1501207.0
+    ],
+    "max": 1501207.0,
+    "min": 0.0,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": 7198078089.0
+   },
+   "units": "deg/s",
+   "values": {
+    "first": [
+     0.08856201171875,
+     -0.440185546875,
+     -0.85302734375,
+     -1.1640625,
+     -1.4169921875
+    ],
+    "last": [
+     1.9296875,
+     1.8466796875,
+     1.7744140625,
+     1.7109375,
+     1.6572265625
+    ],
+    "max": 37.46875,
+    "min": -40.375,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": -10659.746021032333
+   }
+  },
+  "TEMPERATURA ALTA": {
+   "dec_pts": 0,
+   "device_tag": "@AIM",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 4,
+   "timecodes": {
+    "first": [
+     2956.0,
+     3020.0,
+     3070.0,
+     3120.0,
+     3179.0
+    ],
+    "last": [
+     1501220.0,
+     1501286.0,
+     1501336.0,
+     1501409.0,
+     1501475.0
+    ],
+    "max": 1501475.0,
+    "min": 2956.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 17578728905.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max": 0.0,
+    "min": 0.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 0.0
+   }
+  },
+  "TEMPERATURA BAJA": {
+   "dec_pts": 0,
+   "device_tag": "@AIM",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 4,
+   "timecodes": {
+    "first": [
+     2956.0,
+     3020.0,
+     3070.0,
+     3120.0,
+     3179.0
+    ],
+    "last": [
+     1501220.0,
+     1501286.0,
+     1501336.0,
+     1501409.0,
+     1501475.0
+    ],
+    "max": 1501475.0,
+    "min": 2956.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 17578728905.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max": 0.0,
+    "min": 0.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 0.0
+   }
+  },
+  "TEMP_AGUA": {
+   "dec_pts": 1,
+   "device_tag": "0",
+   "function": "Water Temperature",
+   "interpolate": true,
+   "source_type": 3,
+   "timecodes": {
+    "first": [
+     2866.0,
+     2916.0,
+     2966.0,
+     3016.0,
+     3066.0
+    ],
+    "last": [
+     1501264.0,
+     1501314.0,
+     1501363.0,
+     1501415.0,
+     1501465.0
+    ],
+    "max": 1501465.0,
+    "min": 2866.0,
+    "n": 29958,
+    "nan_count": 0,
+    "sum": 22534136222.0
+   },
+   "units": "C",
+   "values": {
+    "first": [
+     97.25,
+     97.25,
+     97.25,
+     97.25,
+     97.25
+    ],
+    "last": [
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity",
+     "-Infinity"
+    ],
+    "max": 97.25,
+    "min": "-Infinity",
+    "n": 29958,
+    "nan_count": 0,
+    "sum": "-Infinity"
+   }
+  },
+  "TIEMPO": {
+   "dec_pts": 0,
+   "device_tag": "@AIM",
+   "function": "Number",
+   "interpolate": true,
+   "source_type": 4,
+   "timecodes": {
+    "first": [
+     2956.0,
+     3020.0,
+     3070.0,
+     3120.0,
+     3179.0
+    ],
+    "last": [
+     1501220.0,
+     1501286.0,
+     1501336.0,
+     1501409.0,
+     1501475.0
+    ],
+    "max": 1501475.0,
+    "min": 2956.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 17578728905.0
+   },
+   "units": "",
+   "values": {
+    "first": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "last": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max": 1.0,
+    "min": 0.0,
+    "n": 23658,
+    "nan_count": 0,
+    "sum": 21277.0
+   }
+  },
+  "VerticalAcc": {
+   "dec_pts": 2,
+   "device_tag": "",
+   "function": "Vertical Acceleration",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     1600.0,
+     1620.0,
+     1640.0,
+     1660.0,
+     1680.0
+    ],
+    "last": [
+     1501221.0,
+     1501241.0,
+     1501261.0,
+     1501281.0,
+     1501301.0
+    ],
+    "max": 1501301.0,
+    "min": 1600.0,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": 7219166791.0
+   },
+   "units": "g",
+   "values": {
+    "first": [
+     -0.98974609375,
+     -0.9951171875,
+     -0.99609375,
+     -0.99072265625,
+     -0.982421875
+    ],
+    "last": [
+     -0.99658203125,
+     -1.00390625,
+     -1.0029296875,
+     -0.99267578125,
+     -0.982421875
+    ],
+    "max": 0.67626953125,
+    "min": -2.892578125,
+    "n": 9492,
+    "nan_count": 0,
+    "sum": -10998.476071834564
+   }
+  },
+  "YawRate": {
+   "dec_pts": 1,
+   "device_tag": "",
+   "function": "Yaw Rate",
+   "interpolate": true,
+   "source_type": 1,
+   "timecodes": {
+    "first": [
+     0.0,
+     20.0,
+     40.0,
+     60.0,
+     80.0
+    ],
+    "last": [
+     1501127.0,
+     1501147.0,
+     1501167.0,
+     1501187.0,
+     1501207.0
+    ],
+    "max": 1501207.0,
+    "min": 0.0,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": 7198078089.0
+   },
+   "units": "deg/s",
+   "values": {
+    "first": [
+     -1.54296875,
+     -1.2021484375,
+     -1.0517578125,
+     -1.06640625,
+     -1.1884765625
+    ],
+    "last": [
+     1.4853515625,
+     1.427734375,
+     1.359375,
+     1.291015625,
+     1.2314453125
+    ],
+    "max": 37.125,
+    "min": -34.90625,
+    "n": 9480,
+    "nan_count": 0,
+    "sum": -6256.962695121765
+   }
+  }
+ },
+ "laps": [
+  [
+   0,
+   0,
+   139482
+  ],
+  [
+   1,
+   139482,
+   258430
+  ],
+  [
+   2,
+   258430,
+   377446
+  ],
+  [
+   3,
+   377446,
+   497053
+  ],
+  [
+   4,
+   497053,
+   615925
+  ],
+  [
+   5,
+   615925,
+   734390
+  ],
+  [
+   6,
+   734390,
+   852654
+  ],
+  [
+   7,
+   852654,
+   971361
+  ],
+  [
+   8,
+   971361,
+   1090989
+  ],
+  [
+   9,
+   1090989,
+   1210116
+  ],
+  [
+   10,
+   1210116,
+   1330023
+  ],
+  [
+   11,
+   1330023,
+   1501564
+  ]
+ ],
+ "metadata": {
+  "Calibrations": [
+   {
+    "channel": "InlineAcc",
+    "raw_1": 0.7415156364440918,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "LateralAcc",
+    "raw_1": -0.0077751874923706055,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "VerticalAcc",
+    "raw_1": -0.28164100646972656,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "RollRate",
+    "raw_1": -0.22912883758544922,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "PitchRate",
+    "raw_1": 0.06580352783203125,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "YawRate",
+    "raw_1": 2.0119428634643555,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "RS",
+    "raw_1": -27.300338745117188,
+    "raw_2": 1.0,
+    "type": 20
+   },
+   {
+    "channel": "FF",
+    "raw_1": -16.154979705810547,
+    "raw_2": 1.0,
+    "type": 20
+   }
+  ],
+  "Device Name": "MIHAIL",
+  "Driver": "Mihail Florov",
+  "Log Date": "10/08/2022",
+  "Log Time": "10:59:39",
+  "Logger ID": 4500987,
+  "Logger Model": null,
+  "Logger Model ID": 768,
+  "Race Mode": "...",
+  "Series": "CIV",
+  "Session": "",
+  "Vehicle": "Yamaha YZF-R6 2017",
+  "Vehicle Electronics Type": "...",
+  "Venue": "Aragon"
+ }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "xrk-js",
+  "version": "0.1.0",
+  "description": "Pure TypeScript parser for AiM XRK/XRZ motorsports telemetry files — zero dependencies, runs in browsers and Node.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyprien0312/xrk-js.git"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "aim",
+    "xrk",
+    "xrz",
+    "telemetry",
+    "motorsport",
+    "racing",
+    "data-logger",
+    "racestudio",
+    "parser"
+  ],
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
