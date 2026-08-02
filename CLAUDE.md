@@ -32,18 +32,19 @@ Regenerating goldens needs Python libxrk, not just the checkout:
 `pip install libxrk`, then
 `python scripts/make_golden.py file.xrk tests/fixtures/name.golden.json`.
 
-### Local dev environment (this machine, Windows)
+### Local dev environment (Windows, portable Node)
 
-Node is a portable install, not on the system PATH. Prepend it per command:
+If Node is a portable/zip install rather than a system one, it is not on PATH —
+invoke it by absolute path, or prepend its directory per command:
 
+```powershell
+$env:PATH = "<path-to>
+ode;" + $env:PATH   # then npm.cmd / node.exe work normally
 ```
-C:\Users\admin0\Documents\claude\tools\node\node.exe   # v22.23.2
-C:\Users\admin0\Documents\claude\tools\node\npm.cmd
-```
 
-PowerShell: `$env:PATH = "C:\Users\admin0\Documents\claude\tools\node;" + $env:PATH`
-before invoking `npm.cmd`. Note that Node ESM on Windows rejects bare absolute
-paths in `import` — use `file:///C:/...` URLs in one-off scripts.
+Verified toolchain: Node v22.23.2 + npm 10.9.8. Note that Node ESM on Windows
+rejects bare absolute paths in `import` — use `file:///C:/...` URLs in one-off
+scripts.
 
 ## Porting rules (important)
 
