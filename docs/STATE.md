@@ -5,7 +5,14 @@
 
 ## 现在是什么状态
 
-- **能跑吗**：能。`npm test` → **2 files / 10 passed, 5 skipped**（2026-08-03 实跑）
+- **能跑吗**：能。`npm test` → **10 passed | 5 skipped**（2026-08-03 实跑）。
+  **这就是预期结果，5 个 skip 不是失败**：`tests/golden.test.ts` 有 7 个 case，只有 2 个 fixture
+  小到能进 repo，其余 5 个 `it.skipIf` 挂在 `XRK_TEST_DATA` 上。要跑满 15 个：
+  ```bash
+  git clone https://github.com/m3rlin45/libxrk /tmp/libxrk
+  XRK_TEST_DATA=/tmp/libxrk/tests/test_data npm test   # → 15 passed
+  ```
+  看到除 `10 passed | 5 skipped`（或带环境变量时的 `15 passed`）以外的结果，才是真出问题了
 - **跑在哪**：作为 npm 包被 [[aim2motec-web]] 依赖。
   **已发布：`aim-xrk@0.1.1`，latest（2026-08-03 `npm view` 实测）**
   （包名不是 `xrk-js`——被 npm 判定与 `xml-js` 过近而拒绝）
@@ -16,8 +23,11 @@
 
 | 优先级 | 事项 | 不做会怎样 |
 |---|---|---|
-| P1 | **5 个 skipped 测试**是什么、为什么跳过，没有记录 | 以为覆盖率是 15 个用例，实际只有 10 个在守；跳过的可能正好是 golden 对比 |
 | P2 | memory 索引里仍写「publish blocked on repo-create permission」——**已发布，这条过期** | 下个 session 花时间去解决一个已经不存在的阻塞 |
+| P2 | 本机 CI/日常没有设 `XRK_TEST_DATA`，5 个 golden case 长期不跑 | 真正的跨实现 parity 只在有人手动配环境时才被验证 |
+
+已知局限有专门文件：**`LIMITATIONS.md`**（每条标 `[Design]` / `[Unimplemented]` / `[Format]` +
+出处），解析行为有变动时要同步。本文件只放状态与待办。
 
 ## 已放弃（附原因，别再提）
 
