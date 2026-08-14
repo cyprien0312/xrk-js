@@ -117,13 +117,30 @@ scaling was applied**. Parity-preserving, but surprising. **[Design]**
 
 ---
 
-## 3. Expansion devices (V1 / V2 / V3 `(c` messages)
+## 3. Expansion devices (V1 / V2 / V3 / V4 `(c` messages)
 
 **3.1 Coverage.** V1 (`unk1=0, unk4=6`) is decoded directly into per-channel
 rows. V2 long (`unk1=0, unk4=8`, two fp16 samples) and V3 short
 (`unk1=1, unk4=2`, one fp16 sample) are buffered and resolved after the main
-pass by `resolveV2V3`. Any other `(c` variant throws and is skipped by
-bad-byte recovery. **[Design]**
+pass by `resolveV2V3`. V4 (`unk1=1, unk4=6`, see 3.6) likewise. Any other `(c`
+variant throws and is skipped by bad-byte recovery. **[Design]**
+
+**3.6 V4 partner messages (`unk1=1, unk4=6`) are decoded from an empirically
+established layout — NOT from the reference parser.** Seen when analog inputs
+are configured at 1 kHz (RaceStudio sampling-rate change, firmware 2026): each
+V2 base message is immediately followed by a 14-byte partner carrying THREE
+fp16 samples and **no timecode**. Burst layout oldest→newest:
+`[V2.s1 @tc−4, q0 @tc−3, q1 @tc−2, q2 @tc−1, V2.s0 @tc]`.
+The pyx reference predates this variant, so there is no parity oracle.
+Evidence for the layout: (a) total-variation minimization over all 12 possible
+layouts on real 1 kHz suspension data picks it on both suspension channels;
+(b) it is the only layout consistent with the established V2 convention
+(s0 = newest, s1 = oldest); (c) decoded rates (~976 Hz nominal 1 kHz) and value
+ranges (rear shock 0–57 mm, fork −117–0 mm, brake −16–36 bar) are physically
+plausible. The intra-burst timecodes (`tc−3/−2/−1` integer ms) are synthesized,
+same class of approximation as V3's ±2 ms (see 3.4). **A RaceStudio CSV export
+of the same session has NOT yet been diffed against this decoding** — do that
+before trusting sub-millisecond timing. **[Format]** + heuristic.
 
 **3.2 The V2/V3 → channel binding is a positional heuristic, not a format
 field.** `resolveV2V3` pairs `channel_field` values by low nibble, collects

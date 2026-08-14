@@ -405,6 +405,29 @@ export function parseRaw(data: Uint8Array): RawParse {
           }
           cVarPos += 1;
           pos += 16;
+        } else if (unk1 === 1 && unk4 === 6) {
+          // V4 partner (firmware ≥2026?, seen at 1 kHz analog rates): 14-byte
+          // message, THREE fp16 samples, no timecode. Always follows its V2
+          // base (cf = base|0x4) in file order; the burst layout is
+          //   oldest→newest: [V2.s1 @tc-4, q0 @tc-3, q1 @tc-2, q2 @tc-1, V2.s0 @tc]
+          // NOT in the pyx reference (which predates this variant). Ordering
+          // established empirically: total-variation minimization over all 12
+          // layouts on real 1 kHz suspension data picks this one on both
+          // suspension channels, and it is the only layout consistent with the
+          // V2 convention (s0=newest, s1=oldest). See LIMITATIONS.md §2.6.
+          if (pos + 14 > len) throw new RangeError("eof");
+          if (data[pos + 13] !== CP) throw new Error("V4 close");
+          const baseEntry = lastV2BaseTc.get(cf ^ 0x4);
+          if (baseEntry) {
+            const tc = baseEntry[0];
+            let lst = v2v3ByCf.get(cf);
+            if (!lst) v2v3ByCf.set(cf, (lst = []));
+            lst.push([tc - 3, data[pos + 7], data[pos + 8], 2, cVarPos]);
+            lst.push([tc - 2, data[pos + 9], data[pos + 10], 2, cVarPos]);
+            lst.push([tc - 1, data[pos + 11], data[pos + 12], 2, cVarPos]);
+          }
+          cVarPos += 1;
+          pos += 14;
         } else if (unk1 === 1 && unk4 === 2) {
           // V3 short — one fp16 sample, timecode synthesized
           if (pos + 10 > len) throw new RangeError("eof");
