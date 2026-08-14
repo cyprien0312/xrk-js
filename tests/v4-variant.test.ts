@@ -10,7 +10,7 @@ import { parseXrk } from "../src/index.js";
 
 const SAMPLE =
   process.env.XRK_V4_SAMPLE ??
-  `${process.env.HOME}/aim-analyzer/data/b4c6c69e-a_0189.xrk`;
+  `${process.env.HOME}/aim-analyzer/data/Jason_r3_Broadford_Practice_a_0189.xrk`;
 
 describe("V4 (unk1=1, unk4=6) 1 kHz analog variant", () => {
   const available = existsSync(SAMPLE);
