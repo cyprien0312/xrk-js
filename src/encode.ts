@@ -232,6 +232,11 @@ export interface EncodeGps {
   periodMs: number;
   /** Timecode of sample 0 in ms. Default 0. */
   startMs?: number;
+  /**
+   * Degrees. A NaN in either array means "no record at this sample": the
+   * message is simply not written, leaving a gap in the stream. Use this for
+   * a no-fix period when you would rather show nothing than a held position.
+   */
   lat: ArrayLike<number>;
   lon: ArrayLike<number>;
   /** Metres. Default 0. */
@@ -497,7 +502,12 @@ function buildGpsRecord(
   dv.setInt32(16, Math.round(x * 100), true);
   dv.setInt32(20, Math.round(y * 100), true);
   dv.setInt32(24, Math.round(z * 100), true);
-  dv.setUint32(28, 200, true); // position accuracy, cm
+  // Accuracy fields as a real receiver reports them: ~2 m / 0.36 m/s with a
+  // 3D fix, and 39 km / 20 m/s with no fix at all (copied from a real MXm
+  // log's no-fix records). Claiming 2 m accuracy on a fix=0 sample is a
+  // contradiction a reader may act on.
+  const noFix = fix === 0;
+  dv.setUint32(28, noFix ? 3908122 : 200, true); // position accuracy, cm
 
   // Ground speed + heading → ENU → ECEF velocity (transpose of the parser's
   // ECEF→ENU rotation, so decodeGps recovers the same speed and heading).
@@ -516,7 +526,7 @@ function buildGpsRecord(
   dv.setInt32(32, Math.round(vx * 100), true);
   dv.setInt32(36, Math.round(vy * 100), true);
   dv.setInt32(40, Math.round(vz * 100), true);
-  dv.setUint32(44, 36, true); // velocity accuracy, cm/s
+  dv.setUint32(44, noFix ? 2000 : 36, true); // velocity accuracy, cm/s
   dv.setUint16(48, Math.round(pdop * 100), true);
   p[51] = sats;
   p[53] = 0x10; // reserved tail is 00 10 00 00 in every real record seen
@@ -706,6 +716,9 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
         // One record per message. Real loggers never batch them, and the
         // parser's concatenation tolerance is not something RaceStudio shares.
         for (let k = first; k < i; k++) {
+          const la = gps.lat[k];
+          const lo = gps.lon[k];
+          if (!Number.isFinite(la) || !Number.isFinite(lo)) continue; // gap
           const tc = start + k * gps.periodMs;
           writeHeaderMsg(
             w,
@@ -713,8 +726,8 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
             buildGpsRecord(
               tc,
               gps.utcStartMs !== undefined ? gps.utcStartMs + k * gps.periodMs : null,
-              gps.lat[k],
-              gps.lon[k],
+              la,
+              lo,
               at(gps.alt, k, 0),
               at(gps.speedMs, k, 0),
               at(gps.headingDeg, k, 0),
