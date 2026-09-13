@@ -153,6 +153,51 @@ describe("encodeXrk", () => {
     expect(Array.from(encodeXrk(opts))).toEqual(Array.from(encodeXrk(opts)));
   });
 
+  it("emits the device-configuration block at the exact sizes real files use", () => {
+    // Regression: a hand-transcribed SRC template was 129 bytes instead of 128,
+    // which shifted the second `idn` record. This parser only reads the first
+    // one, so nothing here caught it — RaceStudio did, with "can't find aim
+    // device information". Assert the framed sizes, not just that it parses.
+    const bytes = encodeXrk({
+      channels: [{ name: "A", units: "bar", periodMs: 10, values: [1, 2, 3] }],
+      metadata: { venue: "X" },
+    });
+    const sizes = new Map<string, number>();
+    const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    for (let p = 0; p + 12 < bytes.length; ) {
+      if (dv.getUint16(p, true) !== 0x683c) { p++; continue; }
+      const wt = dv.getUint32(p + 2, true);
+      const hl = dv.getInt32(p + 6, true);
+      if (hl < 0 || p + 12 + hl + 8 > bytes.length || bytes[p + 11] !== 0x3e) { p++; continue; }
+      let tok = wt;
+      if (tok >>> 24 === 0x20) tok = (tok - 0x20000000) >>> 0;
+      let name = "";
+      for (let t = tok; t; t = Math.floor(t / 256)) name += String.fromCharCode(t & 255);
+      if (!sizes.has(name)) sizes.set(name, hl);
+      p += 12 + hl + 8;
+    }
+    for (const [tok, size] of [
+      ["SRC", 128], ["iSLV", 64], ["HWNF", 33], ["ENF", 175],
+      ["GPSR", 36], ["PDLT", 18], ["ODO", 384], ["TRK", 96],
+    ] as const) {
+      expect(sizes.get(tok), `${tok} payload size`).toBe(size);
+    }
+  });
+
+  it("pairs every CHS with a CDE inside CNF", () => {
+    // RaceStudio reports "no configuration tags found" for a CNF of bare CHS.
+    const bytes = encodeXrk({
+      channels: [
+        { name: "A", units: "bar", periodMs: 10, values: [1] },
+        { name: "B", units: "rpm", periodMs: 10, values: [1] },
+      ],
+    });
+    const log = parseXrk(bytes);
+    expect(log.channels["A"]).toBeDefined();
+    // Master Clk is emitted at index 0 and filtered out of the parser output.
+    expect(log.channels["Master Clk"]).toBeUndefined();
+  });
+
   it("rejects inputs the format cannot represent", () => {
     expect(() =>
       encodeXrk({ channels: [{ name: "A", units: "furlongs", periodMs: 10, values: [1] }] }),
