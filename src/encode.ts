@@ -246,6 +246,13 @@ export interface EncodeGps {
   fix?: ArrayLike<number>;
   /** Positional dilution of precision. Default 1.0. */
   pdop?: ArrayLike<number>;
+  /**
+   * UTC time of sample 0 as epoch milliseconds. When given, every record
+   * carries a real GNSS week number and time-of-week; without it the
+   * time-of-week is just the timecode and the week is 0 (January 1980), which
+   * RaceStudio appears to treat as "no GPS".
+   */
+  utcStartMs?: number;
 }
 
 export interface EncodeLap {
@@ -454,8 +461,14 @@ function buildLap(lapNum: number, startMs: number, endMs: number): Uint8Array {
 }
 
 /** Build one 56-byte GPS record: 4-byte AiM timecode + u-blox NAV-SOL body. */
+/** GPS epoch and the current UTC->GPS leap-second offset (18 s since 2017). */
+const GPS_EPOCH_MS = Date.UTC(1980, 0, 6);
+const GPS_LEAP_MS = 18_000;
+const WEEK_MS = 7 * 24 * 3600 * 1000;
+
 function buildGpsRecord(
   tcMs: number,
+  utcMs: number | null,
   latDeg: number,
   lonDeg: number,
   altM: number,
@@ -468,8 +481,15 @@ function buildGpsRecord(
   const p = new Uint8Array(56);
   const dv = new DataView(p.buffer);
   dv.setInt32(0, Math.round(tcMs), true);
-  dv.setUint32(4, Math.round(tcMs), true); // iTOW stand-in
-  dv.setInt16(12, 0, true); // GPS week
+  if (utcMs !== null) {
+    const gpsMs = utcMs + GPS_LEAP_MS - GPS_EPOCH_MS;
+    const week = Math.floor(gpsMs / WEEK_MS);
+    dv.setUint32(4, Math.round(gpsMs - week * WEEK_MS), true); // iTOW
+    dv.setInt16(12, week, true);
+  } else {
+    dv.setUint32(4, Math.round(tcMs), true); // iTOW stand-in
+    dv.setInt16(12, 0, true);
+  }
   p[14] = fix;
   p[15] = 0x0c; // fix status flags, as seen in real files
 
@@ -499,6 +519,7 @@ function buildGpsRecord(
   dv.setUint32(44, 36, true); // velocity accuracy, cm/s
   dv.setUint16(48, Math.round(pdop * 100), true);
   p[51] = sats;
+  p[53] = 0x10; // reserved tail is 00 10 00 00 in every real record seen
   return p;
 }
 
@@ -682,11 +703,16 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
       while (i < n && start + i * gps.periodMs < winEnd) i++;
       if (i > first) {
         gpsCursor = i;
-        const payload = new Uint8Array((i - first) * 56);
+        // One record per message. Real loggers never batch them, and the
+        // parser's concatenation tolerance is not something RaceStudio shares.
         for (let k = first; k < i; k++) {
-          payload.set(
+          const tc = start + k * gps.periodMs;
+          writeHeaderMsg(
+            w,
+            "GPS",
             buildGpsRecord(
-              start + k * gps.periodMs,
+              tc,
+              gps.utcStartMs !== undefined ? gps.utcStartMs + k * gps.periodMs : null,
               gps.lat[k],
               gps.lon[k],
               at(gps.alt, k, 0),
@@ -696,10 +722,8 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
               at(gps.fix, k, 3),
               at(gps.pdop, k, 1),
             ),
-            (k - first) * 56,
           );
         }
-        writeHeaderMsg(w, "GPS", payload);
       }
     }
   }

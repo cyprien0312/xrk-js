@@ -445,9 +445,12 @@ would have written.
 **12.1 Verified only against this parser.** Every claim below is backed by the
 round-trip tests in `tests/encode.test.ts` (encode -> `parseXrk` -> assert).
 **Nothing here has been verified as *accepted* by AiM RaceStudio**, and
-nothing at all has been checked against AiM's official `MatLabXRK` DLL. One
-negative data point exists: RaceStudio rejected an early build that omitted the
-device-configuration block (12.9) with *"no configuration tags found"*. A file that round-trips
+nothing at all has been checked against AiM's official `MatLabXRK` DLL. RaceStudio
+feedback so far, all from a user opening files by hand: an early build without
+the device-configuration block (12.9) was rejected with *"no configuration tags
+found"*; a build with a 129-byte `SRC` template (one stray byte) with *"can't
+find aim device information"*; a build that batched GPS records and wrote GPS
+week 0 **opened**, but showed no GPS and no track. A file that round-trips
 perfectly here may still be rejected or mis-read by RaceStudio. **[Untested]**
 
 **12.2 The CHS template is borrowed from a real log.** Channel definitions are
@@ -489,8 +492,13 @@ ground speed and heading. Limits that follow:
 
 - ECEF is stored in centimetres, so position round-trips to ~1 cm and speed to
   ~1 cm/s. Measured worst case on a real 29 220-sample track: 0.83 cm.
-- iTOW is filled with the AiM timecode and the GPS week is 0 — neither is a
-  real GNSS time.
+- With `utcStartMs` the records carry a real GNSS week and time-of-week (UTC
+  + 18 s leap offset). Without it the time-of-week is the AiM timecode and the
+  week is 0 (January 1980) — RaceStudio shows no GPS at all for such a file,
+  and does not recognise the track. Leap seconds are a constant 18 here.
+- Exactly one 56-byte record per `GPS` message, as real loggers write them.
+  This parser would accept batched records; RaceStudio silently drops the GPS
+  stream when they are batched.
 - Position accuracy and velocity accuracy are written as constants (200 cm,
   36 cm/s) unless the caller overrides `pdop`.
 - **At zero speed the heading is destroyed.** The velocity vector becomes
