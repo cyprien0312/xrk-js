@@ -59,6 +59,124 @@ const CHS_TEMPLATE = Uint8Array.from([
 /** TRK tail bytes observed in real files (semantics unknown, copied as-is). */
 const TRK_TAIL = Uint8Array.from([0xd9, 0x36, 0x7a, 0xd9, 0x94, 0x10, 0x00, 0x00]);
 
+/** Hex string -> bytes, for the opaque templates lifted out of real logs. */
+function hex(s: string): Uint8Array {
+  const out = new Uint8Array(s.length / 2);
+  for (let i = 0; i < out.length; i++) out[i] = parseInt(s.substr(i * 2, 2), 16);
+  return out;
+}
+
+/**
+ * Device-identity and configuration messages, copied byte-for-byte out of a
+ * real MXm log. RaceStudio refuses a file that only carries CNF + session
+ * strings ("no configuration tags found"), so these have to be present; their
+ * internal structure is almost entirely unknown, which is exactly why they are
+ * reproduced rather than synthesized.
+ *
+ * Consequence, stated plainly: a file carrying this block **claims to be an AiM
+ * logger** (model 539, with a 635 expansion device) regardless of where the
+ * data actually came from. See LIMITATIONS.md §12.9.
+ */
+const DEVICE = {
+  /** `SRC` — two nested `idn` records: the logger and its bus master. */
+  SRC: hex(
+    "69646e0138001b02010200005280630002284200022a4a0000000000010000000000000000000000000000000000" +
+    "0000000000000000000000000000000000000069646e01380007000200000000000000000000000103010000000000" +
+    "000000000000000000000000000000000000000000000000000000000000000000000000",
+  ),
+  /** `iSLV` — expansion-device identity. */
+  iSLV: hex(
+    "69646e0138007b026f08000054a15e0002283600022a2400000000000100000000000000000000000000000000000000" +
+    "00000000000000000000000000000000",
+  ),
+  /** `HWNF` — "WiFi=ESP32|Reg=eu|Rev=01|BNO055|" */
+  HWNF: hex("576946693d45535033327c5265673d65757c5265763d30317c424e4f3035357c00"),
+  /** `ENF` — nested DBUN/DBUT/DVER/MANL/MODL/MANI/MODI describing an OBDII bus. */
+  ENF: hex(
+    "3c684442554e02000000013e31003c4442554e31003e3c684442555404000000013e43414e003c44425554d2003e3c68" +
+    "4456455209000000013e30332e30302e3038003c4456455287013e3c684d414e4c06000000013e4f42444949003c4d41" +
+    "4e4c67013e3c684d4f444c04000000013e43414e003c4d4f444cd2003e3c684d414e4906000000013e4f42444949003c" +
+    "4d414e4967013e3c684d4f444904000000013e43414e003c4d4f4449d2003e",
+  ),
+  /** `GPSR` — GPS receiver descriptor ("iGPS"). */
+  GPSR: hex("45f00b006947505300000000ffffffff010000000000230000000000000000009a010000"),
+  /** `PDLT` — predictive-lap-time source label. */
+  PDLT: hex("42657374204c6170206f6620546573742e00"),
+} as const;
+
+/**
+ * `Master Clk` (index 0) and `iGPS` (last index) CHS payloads, verbatim from a
+ * real MXm log. Every AiM file declares these two: the master clock is the
+ * logger time base, and `iGPS` is how the GPS stream is declared in CNF even
+ * though its samples travel as separate `GPS` header messages.
+ */
+const SYS_CHS = {
+  masterClk: hex(
+    "0000000000000000000000001215000004000000030000004d436c6b000000004d617374657220436c6b000000000000" +
+    "00000000000000000000000000000000a086010000000000040000004041494d0310000001000000000000000200000" +
+    "0000000000000803f00000000caf24971",
+  ),
+  iGps: hex(
+    "2300000000000000000000009a010000050000000800000069475053000000006947505300000000000000000000000000" +
+    "0000000000000000000000000000409c0000c4000000380000000000000002000000ff000000ffffffff0000000000000000" +
+    "0000803f000000000000807f",
+  ),
+} as const;
+
+/** Copy a system CHS template with its channel index and sample period set. */
+function buildSysChs(template: Uint8Array, index: number, periodMs: number): Uint8Array {
+  const p = new Uint8Array(template);
+  const dv = new DataView(p.buffer);
+  dv.setUint16(0, index, true);
+  dv.setUint32(64, periodMs * 1000, true);
+  return p;
+}
+
+/** `ODO` — six 64-byte odometer records (System, Usr 1..4, Fuel Used). */
+function buildOdo(totalTimeS: number, totalDistM: number): Uint8Array {
+  const names = ["System", "Usr 1", "Usr 2", "Usr 3", "Usr 4", "Fuel Used"];
+  const p = new Uint8Array(names.length * 64);
+  const dv = new DataView(p.buffer);
+  names.forEach((name, i) => {
+    const off = i * 64;
+    writeAscii(p, off, 16, name);
+    const isFuel = name === "Fuel Used";
+    dv.setUint32(off + 16, isFuel ? 0 : Math.round(totalTimeS), true);
+    dv.setUint32(off + 20, isFuel ? 0 : Math.round(totalDistM), true);
+    // [24] is a per-record flag in real files: 0x11 for System, 0x01 for the
+    // user odometers, 0x20 for Fuel Used.
+    p[off + 24] = isFuel ? 0x20 : i === 0 ? 0x11 : 0x01;
+  });
+  return p;
+}
+
+/** Overwrite the model/logger id inside a templated `idn`-bearing payload. */
+function patchedIdentity(template: Uint8Array, modelId?: number, loggerId?: number): Uint8Array {
+  if (modelId === undefined && loggerId === undefined) return template;
+  const p = new Uint8Array(template);
+  const dv = new DataView(p.buffer);
+  if (modelId !== undefined) dv.setUint16(6, modelId, true);
+  if (loggerId !== undefined) dv.setUint32(12, loggerId, true);
+  return p;
+}
+
+/**
+ * 4 opaque bytes per channel for `CDE`. Real files carry a different value for
+ * every channel *and every session* — comparing three sessions of the same
+ * logger, all 34 shared channels differ — so these are per-session throwaway
+ * ids, not anything a reader can validate. A deterministic hash of the channel
+ * name keeps our output byte-reproducible.
+ */
+function cdeValue(name: string, index: number): number {
+  let h = 0x811c9dc5;
+  const s = `${index}:${name}`;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h >>> 0;
+}
+
 /** One channel to encode. Values are written as float32 at a fixed period. */
 export interface EncodeChannel {
   /** Long name, max 23 chars (CHS field is 24 bytes incl. NUL). */
@@ -128,6 +246,16 @@ export interface EncodeOptions {
   gps?: EncodeGps;
   laps?: EncodeLap[];
   metadata?: EncodeMetadata;
+  /**
+   * Emit the AiM device-identity / configuration block (SRC, iSLV, HWNF, ENF,
+   * GPSR, PDLT, ODO). Default true — RaceStudio reports "no configuration tags
+   * found" without it. Setting `false` produces a leaner file that this
+   * library still parses. Pass an object to override the advertised ids.
+   *
+   * Note what enabling this means: the file then identifies itself as an AiM
+   * logger, whatever produced the data. See LIMITATIONS.md 12.9.
+   */
+  deviceIdentity?: boolean | { modelId?: number; loggerId?: number };
   /**
    * Data messages are emitted in time-ordered windows of this many ms so that
    * channels interleave the way a real logger writes them. Default 1000.
@@ -363,6 +491,9 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
   const { channels, gps, laps, metadata = {} } = opts;
   const windowMs = opts.windowMs ?? 1000;
   if (windowMs <= 0) throw new Error("encodeXrk: windowMs must be positive");
+  const identityOpt = opts.deviceIdentity ?? true;
+  const emitIdentity = identityOpt !== false;
+  const device = typeof identityOpt === "object" ? identityOpt : {};
 
   for (const ch of channels) {
     if (!Number.isInteger(ch.periodMs) || ch.periodMs < 1) {
@@ -376,36 +507,6 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
     throw new Error("encodeXrk: gps.periodMs must be an integer >= 1");
   }
 
-  const w = new Writer(1 << 20);
-
-  // --- CNF: the channel configuration container -----------------------------
-  const cnf = new Writer(1 << 14);
-  channels.forEach((ch, i) => writeHeaderMsg(cnf, "CHS", buildChs(ch, i, 4)));
-  writeHeaderMsg(w, "CNF", cnf.view());
-
-  // --- Session metadata -----------------------------------------------------
-  const simple: Array<[string, string | undefined]> = [
-    ["RCR", metadata.driver],
-    ["VEH", metadata.vehicle],
-    ["CMP", metadata.series],
-    ["VTY", metadata.session],
-    ["NTE", metadata.comment],
-    ["TMD", metadata.date],
-    ["TMT", metadata.time],
-  ];
-  for (const [tok, value] of simple) {
-    if (value !== undefined) writeHeaderMsg(w, tok, stringPayload(value));
-  }
-  if (metadata.venue !== undefined) {
-    writeHeaderMsg(
-      w,
-      "TRK",
-      buildTrk(metadata.venue, metadata.sfLat ?? 0, metadata.sfLon ?? 0),
-      2,
-    );
-  }
-
-  // --- Data, emitted in time-ordered windows --------------------------------
   let endMs = 0;
   for (const ch of channels) {
     endMs = Math.max(endMs, (ch.startMs ?? 0) + ch.values.length * ch.periodMs);
@@ -414,6 +515,87 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
     endMs = Math.max(endMs, (gps.startMs ?? 0) + gps.lat.length * gps.periodMs);
   }
 
+  // Index 0 is the master clock in every real file, so user channels start at
+  // 1 and the GPS declaration takes the last slot.
+  const CLK_PERIOD_MS = 100;
+  const clkIndex = emitIdentity ? 0 : -1;
+  const userBase = emitIdentity ? 1 : 0;
+  const gpsIndex = emitIdentity && gps ? userBase + channels.length : -1;
+
+  const w = new Writer(1 << 20);
+
+  // --- CNF: the channel configuration container -----------------------------
+  // Real files pair every CHS with a CDE carrying the same channel index, and
+  // RaceStudio rejects a CNF that has only CHS.
+  const cnf = new Writer(1 << 14);
+  const writeCde = (index: number, name: string) => {
+    const cde = new Uint8Array(6);
+    const cdv = new DataView(cde.buffer);
+    cdv.setUint16(0, index, true);
+    cdv.setUint32(2, cdeValue(name, index), true);
+    writeHeaderMsg(cnf, "CDE", cde);
+  };
+  if (clkIndex >= 0) {
+    writeHeaderMsg(cnf, "CHS", buildSysChs(SYS_CHS.masterClk, clkIndex, CLK_PERIOD_MS));
+    writeCde(clkIndex, "Master Clk");
+  }
+  channels.forEach((ch, i) => {
+    writeHeaderMsg(cnf, "CHS", buildChs(ch, userBase + i, 4));
+    writeCde(userBase + i, ch.name);
+  });
+  if (gpsIndex >= 0 && gps) {
+    writeHeaderMsg(cnf, "CHS", buildSysChs(SYS_CHS.iGps, gpsIndex, gps.periodMs));
+    writeCde(gpsIndex, "iGPS");
+  }
+  const cnfPayload = new Uint8Array(cnf.view()); // reused: real files repeat it
+  writeHeaderMsg(w, "CNF", cnfPayload);
+
+  // --- Header block, in the order a real logger writes it --------------------
+  // The session strings appear twice in a real file: empty placeholders here,
+  // then the real values at the very end (the logger fills them in when the
+  // session closes). `getMetadata` takes the last of each, so the trailing
+  // copies are what a reader sees.
+  const EMPTY = Uint8Array.from([0]);
+  for (const tok of ["RCR", "VEH", "CMP", "VTY", "NDV", "RACM", "VET"]) {
+    writeHeaderMsg(w, tok, EMPTY);
+  }
+
+  if (emitIdentity) {
+    writeHeaderMsg(w, "SRC", patchedIdentity(DEVICE.SRC, device.modelId, device.loggerId));
+    writeHeaderMsg(w, "iSLV", DEVICE.iSLV);
+    writeHeaderMsg(w, "HWNF", DEVICE.HWNF);
+    writeHeaderMsg(w, "ENF", DEVICE.ENF);
+    writeHeaderMsg(w, "RACM", stringPayload("speed"));
+  }
+
+  if (metadata.venue !== undefined) {
+    // The token is "TRK " with a trailing space in real files, not "TRK\0".
+    writeHeaderMsg(
+      w,
+      "TRK ",
+      buildTrk(metadata.venue, metadata.sfLat ?? 0, metadata.sfLon ?? 0),
+      2,
+    );
+  }
+  if (emitIdentity) writeHeaderMsg(w, "PDLT", DEVICE.PDLT);
+  if (metadata.date !== undefined) writeHeaderMsg(w, "TMD", stringPayload(metadata.date));
+  if (metadata.time !== undefined) writeHeaderMsg(w, "TMT", stringPayload(metadata.time));
+
+  // Session totals, used by both ODO copies.
+  let sessionDistM = 0;
+  if (gps) {
+    const step = gps.periodMs / 1000;
+    for (let i = 0; i < gps.lat.length; i++) sessionDistM += at(gps.speedMs, i, 0) * step;
+  }
+  if (emitIdentity) {
+    // Real logs close the header with ODO, then repeat the whole CNF and
+    // declare the GPS receiver before any samples appear.
+    writeHeaderMsg(w, "ODO", buildOdo(endMs / 1000, sessionDistM));
+    writeHeaderMsg(w, "CNF", cnfPayload);
+    writeHeaderMsg(w, "GPSR", DEVICE.GPSR);
+  }
+
+  // --- Data, emitted in time-ordered windows --------------------------------
   // Channels declared in V are stored as mV on the wire; the parser divides
   // by 1000 on the way back out.
   const wireScale = channels.map((ch) => (ch.units === "V" ? 1000 : 1));
@@ -423,6 +605,24 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
 
   for (let winStart = 0; winStart < endMs; winStart += windowMs) {
     const winEnd = winStart + windowMs;
+
+    // Master clock: decoder 3 is a plain int32, and the value is the timecode
+    // itself — this is the logger's time base, not a measurement.
+    if (clkIndex >= 0) {
+      const first = Math.ceil(winStart / CLK_PERIOD_MS);
+      const last = Math.ceil(Math.min(winEnd, endMs) / CLK_PERIOD_MS);
+      if (last > first) {
+        msg.len = 0;
+        msg.u8(0x28);
+        msg.u8(0x4d);
+        msg.i32(first * CLK_PERIOD_MS);
+        msg.u16(clkIndex);
+        msg.u16(last - first);
+        for (let k = first; k < last; k++) msg.i32(k * CLK_PERIOD_MS);
+        msg.u8(0x29);
+        w.bytes(msg.view());
+      }
+    }
 
     for (let c = 0; c < channels.length; c++) {
       const ch = channels[c];
@@ -437,7 +637,7 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
       msg.u8(0x28); // '('
       msg.u8(0x4d); // 'M'
       msg.i32(start + first * ch.periodMs);
-      msg.u16(c);
+      msg.u16(userBase + c);
       msg.u16(i - first);
       const sc = wireScale[c];
       for (let k = first; k < i; k++) msg.f32(ch.values[k] * sc);
@@ -480,6 +680,26 @@ export function encodeXrk(opts: EncodeOptions): Uint8Array {
     laps.forEach((lap, i) => {
       writeHeaderMsg(w, "LAP", buildLap(i + 1, lap.startMs, lap.endMs));
     });
+  }
+
+  // --- Trailing block: odometers, then the real session strings --------------
+  // Real logs re-emit ODO periodically; one closing copy is enough here.
+  if (emitIdentity) writeHeaderMsg(w, "ODO", buildOdo(endMs / 1000, sessionDistM));
+  // Version 0, matching the real files: these are the values a reader keeps.
+  const trailing: Array<[string, string | undefined]> = [
+    ["RCR", metadata.driver],
+    ["VEH", metadata.vehicle],
+    ["CMP", metadata.series],
+    ["VTY", metadata.session],
+    ["NTE", metadata.comment],
+  ];
+  for (const [tok, value] of trailing) {
+    if (value !== undefined) {
+      // Trailing strings are written without the NUL terminator in real files.
+      const bytes = new Uint8Array(value.length);
+      for (let i = 0; i < value.length; i++) bytes[i] = value.charCodeAt(i) & 0x7f;
+      writeHeaderMsg(w, tok, bytes, 0);
+    }
   }
 
   return new Uint8Array(w.view());

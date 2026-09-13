@@ -444,8 +444,10 @@ would have written.
 
 **12.1 Verified only against this parser.** Every claim below is backed by the
 round-trip tests in `tests/encode.test.ts` (encode -> `parseXrk` -> assert).
-**Nothing here has been verified against AiM RaceStudio or AiM's official
-`MatLabXRK` DLL** — no copy of either was available. A file that round-trips
+**Nothing here has been verified as *accepted* by AiM RaceStudio**, and
+nothing at all has been checked against AiM's official `MatLabXRK` DLL. One
+negative data point exists: RaceStudio rejected an early build that omitted the
+device-configuration block (12.9) with *"no configuration tags found"*. A file that round-trips
 perfectly here may still be rejected or mis-read by RaceStudio. **[Untested]**
 
 **12.2 The CHS template is borrowed from a real log.** Channel definitions are
@@ -475,12 +477,11 @@ messages. Consequences:
   to garbage. Likewise `StrtRec` and `Master Clk` are filtered out of the
   parser's output entirely. **[Design]**
 
-**12.4 Not emitted.** `(S` single-sample messages, `(G` grouped-channel rows,
-`(c` expansion-device messages (V1/V2/V3/V4), `GNFI` internal-clock records,
-`CAL` calibrations, `ODO` odometers, `SRC` / `iSLV` / `ENF` / `HWNF` expansion
-metadata, and `idn` logger identity. A parsed encoder output therefore has no
-`Logger ID`, `Logger Model`, `GPS Receiver`, `Expansion Devices`,
-`Calibrations` or `Odo/*` metadata. **[Unimplemented]**
+**12.4 Not emitted.** `(S` single-sample messages, `(G` grouped-channel rows
+and `GRP` group definitions, `(c` expansion-device messages (V1/V2/V3/V4),
+`GNFI` internal-clock records, and `CAL` calibrations. A parsed encoder output
+therefore has no `Calibrations` metadata, and all channels are standalone (no
+grouped rows). **[Unimplemented]**
 
 **12.5 GPS records are synthesized, not captured.** Each 56-byte record is
 built from lat/lon/alt via `lla2ecef` plus a velocity vector reconstructed from
@@ -515,6 +516,36 @@ RaceStudio might. **[Design]**
 **12.8 No compression.** `encodeXrk` returns an uncompressed `.xrk` stream. The
 library only decompresses (`decompressIfZlib`); producing `.xrz` is left to the
 caller. **[Unimplemented]**
+
+**12.9 The file claims to be an AiM logger.** RaceStudio rejects a file that
+carries only `CNF` plus session strings — it reports *"no configuration tags
+found"*. Making it acceptable means reproducing the configuration block a real
+logger writes, and most of that block is opaque. So, by default
+(`deviceIdentity: true`), `encodeXrk` emits `SRC`, `iSLV`, `HWNF`, `ENF`,
+`GPSR`, `PDLT` and `ODO` copied byte-for-byte from a real MXm log, a `CDE`
+alongside every `CHS` inside `CNF`, a `Master Clk` channel at index 0 and an
+`iGPS` channel declaration at the last index.
+
+Consequences worth being explicit about:
+
+- **The output advertises a specific logger identity** — model id 539, logger
+  id 6520914, plus a model-635 expansion device — regardless of what actually
+  produced the data. `deviceIdentity: { modelId, loggerId }` overrides the two
+  logger fields; the rest of the block stays as copied. `deviceIdentity: false`
+  omits it entirely, which this parser is happy with and RaceStudio is not.
+- `HWNF`, `ENF` and `GPSR` describe *that* logger's hardware (ESP32 WiFi,
+  BNO055 IMU, an OBDII CAN bus, an iGPS receiver). They are not a description
+  of the data source.
+- `CDE` carries 4 opaque bytes per channel. Real files use a different value
+  for every channel *and every session* — across three sessions of one logger,
+  all 34 shared channels differ — so nothing can be validating them; the
+  encoder writes a deterministic hash of the channel name.
+- `ODO` reports session time and GPS-integrated distance, not a lifetime
+  odometer.
+- `Master Clk` is emitted truthfully (its value is the timecode), and the
+  parser filters it out of `channels` as it does for real files.
+
+**[Design]** — and still **[Untested]** against RaceStudio: see 12.1.
 
 ---
 
