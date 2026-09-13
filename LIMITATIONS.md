@@ -442,10 +442,16 @@ import resolves). **[Unimplemented]**
 path, and the output is not a byte-level reproduction of what an AiM logger
 would have written.
 
-**12.1 Verified only against this parser.** Every claim below is backed by the
-round-trip tests in `tests/encode.test.ts` (encode -> `parseXrk` -> assert).
-**Nothing here has been verified as *accepted* by AiM RaceStudio**, and
-nothing at all has been checked against AiM's official `MatLabXRK` DLL. RaceStudio
+**12.1 Verified against this parser; RaceStudio acceptance is empirical.**
+Every claim below is backed by the round-trip tests in `tests/encode.test.ts`
+(encode -> `parseXrk` -> assert). RaceStudio 3 acceptance has been established
+only by a user opening files by hand, not by any automated check, and nothing
+has been checked against AiM's official `MatLabXRK` DLL. **What is known to
+work (2026-09-13):** RaceStudio 3 opens a converted MoTeC session, reads the
+GPS stream, and reports lap times that match this library's own `findLaps`
+result to the second (verified on a 6-minute, 29-channel file; the full
+49-minute / 156-channel build had not yet been reported on when this was
+written). RaceStudio
 feedback so far, all from a user opening files by hand: an early build without
 the device-configuration block (12.9) was rejected with *"no configuration tags
 found"*; a build with a 129-byte `SRC` template (one stray byte) with *"can't
