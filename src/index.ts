@@ -21,6 +21,14 @@ import type { ChannelDef, XrkChannel, XrkLap, XrkLog } from "./types.js";
 export { decompressIfZlib, isZlib } from "./inflate.js";
 export { ecef2lla, lla2ecef } from "./gps.js";
 export { tokdec, tokenc, GPS_CHANNEL_NAMES } from "./constants.js";
+export { encodeXrk } from "./encode.js";
+export type {
+  EncodeChannel,
+  EncodeGps,
+  EncodeLap,
+  EncodeMetadata,
+  EncodeOptions,
+} from "./encode.js";
 export type { XrkChannel, XrkLap, XrkLog, SampleArray } from "./types.js";
 
 /** Channels excluded from the output (pyx parity). */

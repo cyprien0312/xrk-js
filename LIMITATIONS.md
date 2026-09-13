@@ -435,6 +435,89 @@ import resolves). **[Unimplemented]**
 
 ---
 
+## 12. Encoder (`encodeXrk`)
+
+`encodeXrk` writes an XRK byte stream that this library reads back. It is a
+*synthesizer*, not a re-serializer: there is no `parseXrk -> encodeXrk` identity
+path, and the output is not a byte-level reproduction of what an AiM logger
+would have written.
+
+**12.1 Verified only against this parser.** Every claim below is backed by the
+round-trip tests in `tests/encode.test.ts` (encode -> `parseXrk` -> assert).
+**Nothing here has been verified against AiM RaceStudio or AiM's official
+`MatLabXRK` DLL** — no copy of either was available. A file that round-trips
+perfectly here may still be rejected or mis-read by RaceStudio. **[Untested]**
+
+**12.2 The CHS template is borrowed from a real log.** Channel definitions are
+built by copying the 112-byte CHS payload of a real MXm channel (`OBDII_RPM`,
+decoder 6 / float32 / 100 ms) and overwriting the fields whose meaning is
+known. The bytes at `[80:96]` and `[68:72]` vary per channel in real files and
+their semantics are unknown; the encoder writes plausible incrementing values.
+This is deliberately *less* wrong than zero-filling, but it is still a guess.
+**[Design]**
+
+**12.3 Channels are float32 `(M` bursts at a fixed integer-ms period only.**
+The encoder emits exactly one channel shape: decoder 6, `size = 4`, samples
+evenly spaced at an integer number of milliseconds, written as `(M` burst
+messages. Consequences:
+
+- A source at 3 Hz, 7 Hz, or any rate whose period is not a whole number of
+  milliseconds cannot be represented and must be resampled by the caller.
+- Values are quantised to float32 (~7 significant digits).
+- Channels declared with `units: "V"` are multiplied by 1000 on the wire, since
+  the parser divides unit-type 21 by 1000 on the way out.
+- Units are limited to the encoder's `UNIT_BYTE` table (the invertible subset
+  of `UNIT_MAP`); anything else throws. There is no unit byte for `m`, `m/s`,
+  `N`, `s` or `ratio`, so such channels have to go out unitless.
+- `Calculated_Gear` and `PreCalcGear` must not be used as channel names: the
+  parser routes them to `MANUAL_DECODERS` (8-byte `Q` with a bitfield fixup)
+  regardless of the CHS decoder byte, so a float32 channel by that name decodes
+  to garbage. Likewise `StrtRec` and `Master Clk` are filtered out of the
+  parser's output entirely. **[Design]**
+
+**12.4 Not emitted.** `(S` single-sample messages, `(G` grouped-channel rows,
+`(c` expansion-device messages (V1/V2/V3/V4), `GNFI` internal-clock records,
+`CAL` calibrations, `ODO` odometers, `SRC` / `iSLV` / `ENF` / `HWNF` expansion
+metadata, and `idn` logger identity. A parsed encoder output therefore has no
+`Logger ID`, `Logger Model`, `GPS Receiver`, `Expansion Devices`,
+`Calibrations` or `Odo/*` metadata. **[Unimplemented]**
+
+**12.5 GPS records are synthesized, not captured.** Each 56-byte record is
+built from lat/lon/alt via `lla2ecef` plus a velocity vector reconstructed from
+ground speed and heading. Limits that follow:
+
+- ECEF is stored in centimetres, so position round-trips to ~1 cm and speed to
+  ~1 cm/s. Measured worst case on a real 29 220-sample track: 0.83 cm.
+- iTOW is filled with the AiM timecode and the GPS week is 0 — neither is a
+  real GNSS time.
+- Position accuracy and velocity accuracy are written as constants (200 cm,
+  36 cm/s) unless the caller overrides `pdop`.
+- **At zero speed the heading is destroyed.** The velocity vector becomes
+  `(0,0,0)`, so the parser recovers heading 0 and `GPS_Yaw_Rate` spikes at the
+  boundaries of every standstill. This is inherent to the format, not to the
+  encoder: real MXm logs show the same effect *worse* (±4500 deg/s over 770
+  samples on one reference file, versus ±1800 over 35 on a synthesized one).
+  **[Design]**
+
+**12.6 Laps.** `LAP` payloads reuse the constant bytes observed in real files
+(`[0]=0x20`, `[12]=0x04`, `[13]=0x02`) and only segment 0 is written. Lap start
+and end are rounded together before the stored duration is computed, because
+the parser recovers the start as `end - duration`; rounding them independently
+shifts the recovered start by a millisecond and breaks contiguity with the
+previous lap. Laps must be supplied already sorted and contiguous — the encoder
+does not check. **[Design]**
+
+**12.7 Message interleaving is uniform, not logger-realistic.** Data is emitted
+in fixed time windows (default 1000 ms), all channels in index order within
+each window. A real logger interleaves by arrival. The parser does not care;
+RaceStudio might. **[Design]**
+
+**12.8 No compression.** `encodeXrk` returns an uncompressed `.xrk` stream. The
+library only decompresses (`decompressIfZlib`); producing `.xrz` is left to the
+caller. **[Unimplemented]**
+
+---
+
 ## Reporting
 
 Found a file this library mis-parses? Please open an issue at

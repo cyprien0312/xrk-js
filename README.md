@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/aim-xrk.svg)](https://www.npmjs.com/package/aim-xrk)
 
-Pure TypeScript parser for **AiM XRK/XRZ** motorsports telemetry files. Zero dependencies — runs in browsers, Node.js, Deno, and Bun. No AiM DLL required.
+Pure TypeScript parser **and encoder** for **AiM XRK/XRZ** motorsports telemetry files. Zero dependencies — runs in browsers, Node.js, Deno, and Bun. No AiM DLL required.
 
 > npm package: **`aim-xrk`** &nbsp;·&nbsp; repository: `xrk-js`
 
@@ -17,6 +17,10 @@ XRK is the native log format of [AiM](https://www.aim-sportline.com/) data logge
 - Corrects the known AiM firmware GPS timing bug (~65533 ms 16-bit overflow jumps), using GNFI internal-clock messages when available
 - Session metadata: driver, vehicle, venue, date/time, logger model/serial, GPS receiver, expansion devices, odometers, calibrations
 - Fast: parses a 42 MB / 100-channel XRK in ~0.5 s (Node 22)
+- **Writes XRK too** (`encodeXrk`) — synthesize a log from plain arrays: channels,
+  GPS track, laps and session metadata. Round-trips through `parseXrk`; see the
+  caveats in [LIMITATIONS.md §12](LIMITATIONS.md#12-encoder-encodexrk) (notably:
+  **not verified against RaceStudio**)
 
 ## Install
 
@@ -55,6 +59,30 @@ log.metadata; // { Driver, Vehicle, Venue, "Log Date", "Logger Model", ... }
 ```
 
 Each channel keeps its **native sample rate** — timecodes are per-channel. Channels with `interpolate: true` (analog sensors) should be linearly interpolated when resampling; others (status/gear) should be stepped/forward-filled.
+
+
+### Writing a file
+
+```js
+import { encodeXrk } from "aim-xrk";
+import { writeFileSync } from "node:fs";
+
+const bytes = encodeXrk({
+  channels: [
+    // Evenly spaced samples; periodMs must be a whole number of milliseconds.
+    { name: "OBDII_RPM", shortName: "RPM", units: "rpm", periodMs: 10, values: rpm },
+    { name: "Brake_Press", shortName: "BrkP", units: "bar", periodMs: 10, values: brake },
+  ],
+  gps: { periodMs: 40, lat, lon, alt, speedMs, headingDeg },
+  laps: [{ startMs: 0, endMs: 91234 }],
+  metadata: {
+    driver: "Jason", vehicle: "r3", venue: "Broadford", session: "Race",
+    date: "11/23/2025", time: "12:54:42",
+    sfLat: -37.2159059, sfLon: 145.0823972,
+  },
+});
+writeFileSync("session.xrk", bytes);
+```
 
 ## API
 
