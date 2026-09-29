@@ -49,6 +49,7 @@ const CASES: Array<{ name: string; golden: string; data: string; ext?: boolean }
   { name: "86 2248.xrk (100 channels)", golden: "86_2248.golden.json", data: "86/CMD_Inferno 86_Fuji GP Sh_Generic testing_a_2248.xrk", ext: true },
   { name: "SFJ 0033.xrk", golden: "sfj_0033.golden.json", data: "SFJ/CMD_SFJ_Fuji GP Sh_Generic testing_a_0033.xrk", ext: true },
   { name: "SFJ Suzuka 0090.xrk", golden: "sfj_suzuka_0090.golden.json", data: "SFJ/CMD_SFJ_Suzuka Car_Generic testing_a_0090.xrk", ext: true },
+  { name: "issue84 KK-SII.xrz (replayed GPS block)", golden: "issue84.golden.json", data: "issue84/CMD_KK-SII_Tsukuba_Car_Qualifying testing_a_0159.xrz", ext: true },
 ];
 
 function num(v: number | string): number {

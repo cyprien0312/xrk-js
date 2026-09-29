@@ -309,11 +309,11 @@ npm run build         # emit dist/
 npm run typecheck
 ```
 
-`npm test` reports **10 passed / 5 skipped**. The 5 skips are the extended golden cases whose source files are too large to commit — they are skipped, not failing. To run them, point `XRK_TEST_DATA` at [libxrk](https://github.com/m3rlin45/libxrk)'s test corpus:
+`npm test` reports **32 passed / 9 skipped**. The skips are the extended cases whose source files are too large to commit — they are skipped, not failing. To run them, point `XRK_TEST_DATA` at [libxrk](https://github.com/m3rlin45/libxrk)'s test corpus:
 
 ```bash
 git clone https://github.com/m3rlin45/libxrk /tmp/libxrk
-XRK_TEST_DATA=/tmp/libxrk/tests/test_data npm test   # → 15 passed
+XRK_TEST_DATA=/tmp/libxrk/tests/test_data npm test   # → 39 passed | 2 skipped (V4 needs XRK_V4_SAMPLE)
 ```
 
 To regenerate golden JSON after a libxrk update:

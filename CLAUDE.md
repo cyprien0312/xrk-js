@@ -12,21 +12,23 @@ npm test              # vitest run (~3s)
 npm run verify:esm    # build + assert `import("./dist/index.js")` exposes parseXrk
 ```
 
-### Expected test result: `10 passed | 5 skipped`
+### Expected test result: `32 passed | 9 skipped`
 
-**The 5 skips are not failures.** `tests/golden.test.ts` defines 7 cases; only 2
+**The 9 skips are not failures.** `tests/golden.test.ts` defines 8 cases; only 2
 fixture files are small enough to commit (`aim_official_test.xrk`,
-`sfj_0101.xrz`). The other 5 are `it.skipIf`-gated on the env var
+`sfj_0101.xrz`). The other 6 (plus the issue84 check in
+`tests/gps-timecodes.test.ts`) are `it.skipIf`-gated on the env var
 `XRK_TEST_DATA` pointing at a [libxrk](https://github.com/m3rlin45/libxrk)
 checkout's `tests/test_data`, which holds the large source files:
 
 ```bash
 git clone https://github.com/m3rlin45/libxrk /tmp/libxrk
-XRK_TEST_DATA=/tmp/libxrk/tests/test_data npm test   # → 15 passed
+XRK_TEST_DATA=/tmp/libxrk/tests/test_data npm test   # → 39 passed | 2 skipped
 ```
 
-If you see anything other than `10 passed | 5 skipped` (or `15 passed` with the
-env var set), something is actually wrong.
+The last 2 skips are `tests/v4-variant.test.ts`, which needs a local 1 kHz
+sample via `XRK_V4_SAMPLE` (then 41 passed). If you see anything else,
+something is actually wrong.
 
 Regenerating goldens needs Python libxrk, not just the checkout:
 `pip install libxrk`, then

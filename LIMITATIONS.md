@@ -199,10 +199,41 @@ jumps randomly. **[Format]**
 GPS byte count is not a multiple of 56. This is one of the few errors that
 escapes `parseXrk`. **[Design]**
 
-**4.5 The 16-bit timecode overflow reconstruction only triggers on
-non-monotonic timecodes.** `decodeGps` rebuilds wrapped timecodes only after
-detecting `rawTc[i] < rawTc[i-1]`. A wrap that happens to keep the sequence
-monotonic is not detected. **[Design]**
+**4.5 GPS timecode reconstruction is a phase unwrap, and GPS timecodes can
+come out non-monotonic.** Some firmware corrupts the upper 16 bits of the
+GPS record timecode. When — and only when — the raw stream is non-monotonic,
+`decodeGps` places each record at the multiple of 65536 closest to its
+predecessor (low-16 delta folded into [−32768, +32767]; libxrk ≥ 0.13
+`spec/docs/companion.md` §6). Consequences:
+
+- Backwards steps that are not rollovers — out-of-order records at a buffer
+  seam (1–1053 ms seen), replayed record blocks, all-zero dropout records —
+  keep their raw logger time. **GPS channel timecodes can therefore step
+  backwards and contain duplicates.** This matches AiM's official DLL (libxrk
+  pins it on the `issue84` fixture: one backwards step, 41 duplicate
+  timecodes, nothing dropped). Callers that interpolate or resample must sort
+  and de-duplicate themselves.
+- An all-zero dropout record is kept, placed at its predecessor + the low-16
+  delta. Its values are garbage (lat/lon 0/0, speed 0, accuracy 0).
+- A replayed block longer than 32.768 s looks exactly like a rollover and is
+  advanced one band; `fixGpsTimingGaps` method 3 (4.6) then takes back 65533
+  of the 65536 ms, leaving **+3 ms**. Seen once in 129 real logs (a 35.2 s
+  replay).
+- A wrap that happens to keep the sequence monotonic is not detected.
+
+**Fixed 2026-09-29 — the superseded rule** ("+65536 on *any* decrease",
+the libxrk behaviour this port was made from) turned every such step into a
+fake rollover. `fixGpsTimingGaps` then removed only *gap − 40 ms* of it, so the
+entire rest of the GPS stream stayed shifted against every logger-clock
+channel: by |step| + 40 ms for a seam step, by (real gap across the record −
+40 ms) for an all-zero record. On 129 real logs (two motorcycles, three loggers),
+40 were shifted, by 41 ms to 136 s; brake pressure led GPS deceleration by
+up to 2.24 s. AiM's own `aim_official_test.xrk` was shifted 4.7 s (one
+out-of-order record at the start), and its GPS-detected laps with it. The
+goldens for `aim_official_test`, `sfj_0101` and `sfj_suzuka_0090` were
+regenerated with libxrk 0.13.0; after the fix xrk-js and libxrk 0.13.0 agree
+exactly on GPS timecodes and laps for all 129 logs.
+Tests: `tests/gps-timecodes.test.ts`. **[Format]** + **[Design]**
 
 **4.6 The ~65533 ms firmware timing-bug fix rests on several assumptions.**
 `fixGpsTimingGaps` tries three detection methods in order:
@@ -227,6 +258,11 @@ If none match, GPS timecodes are left untouched. Additionally:
 - Lap boundaries are corrected **only when laps came from GPS detection**. LAP
   messages use the logger's internal clock and are unaffected by the bug, so
   they are deliberately left alone.
+- **Known parity gap with libxrk 0.13:** with two or more corrections, xrk-js
+  tests each later correction against the *already corrected* timecodes
+  (`fixed[i] > gapTime`); libxrk masks with the original ones
+  (`gps_time > gap_time`). Only the first correction is guaranteed identical.
+  No log in the 129-file corpus of 2026-09-29 triggers more than one.
 
 **[Design]** with **[Format]** roots.
 
@@ -399,9 +435,11 @@ per-channel rule). **[Design]**
 The golden suite (`tests/golden.test.ts`) compares against JSON generated from
 Python libxrk by `scripts/make_golden.py`.
 
-**11.1 Two fixtures are committed; five require `XRK_TEST_DATA`.**
-A default `npm test` reports **10 passed / 5 skipped** — the 5 skips are the
-external cases, *not* failures. See the README for how to enable them.
+**11.1 Two fixtures are committed; six require `XRK_TEST_DATA`.**
+A default `npm test` reports **32 passed / 9 skipped** — the skips are the
+external cases (6 golden + the issue84 GPS-timecode check) and the 2 V4 tests
+that need a local 1 kHz sample (`XRK_V4_SAMPLE`), *not* failures. With
+`XRK_TEST_DATA` set: **39 passed / 2 skipped**. See the README.
 
 **11.2 What is covered:**
 
@@ -413,7 +451,8 @@ external cases, *not* failures. See the README for how to enable them.
 | `issue68 KK-SII.xrz` | model 519 | 87 | 5 | V2/V3 expansion, TPMS |
 | `issue49 badGPSdata.xrk` | model 768 | 86 | 12 | GPS timing-bug path |
 | `SFJ 0033.xrk` | MXm (793) | 34 | 13 | |
-| `SFJ Suzuka 0090.xrk` | MXm (793) | 35 | 10 | |
+| `SFJ Suzuka 0090.xrk` | MXm (793) | 35 | 10 | replayed 13.2 s GPS block |
+| `issue84 KK-SII.xrz` | model 519 | 87 | 3 | replayed 1.6 s GPS block (4.5 regression) |
 
 **11.3 What is *not* covered:** SoloDL, MXG, MXS and EVO-series loggers; the
 GPS-only lap-detection fallback (all seven fixtures carry LAP messages); ≥ 7-speed

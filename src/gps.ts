@@ -103,15 +103,18 @@ export function decodeGps(gpsBytes: Uint8Array, timeOffset: number): ChannelDef[
     }
   }
   if (nonMonotonic) {
-    const base = rawTc[0] - (rawTc[0] % 65536 + 65536) % 65536;
-    for (let i = 0; i < n; i++) rawTc[i] = ((rawTc[i] % 65536) + 65536) % 65536 + base;
-    let wraps = 0;
-    let prev = rawTc[0];
+    // Phase unwrap (pyx `_decode_gps`, spec `reconstruct_gps_timecodes`): place
+    // each sample at the multiple of 65536 CLOSEST to its predecessor, i.e.
+    // fold the low-16 delta into [-32768, +32767]. Only a backwards step near
+    // 65536 reads as a rollover; smaller ones (out-of-order records, a replayed
+    // block, an all-zero dropout record) keep their true time instead of
+    // inflating every later sample by 65536 ms. Output ≡ input (mod 65536).
+    let prevRaw = rawTc[0];
     for (let i = 1; i < n; i++) {
       const cur = rawTc[i];
-      if (cur < prev) wraps += 65536;
-      prev = cur;
-      rawTc[i] = cur + wraps;
+      const delta = (((cur - prevRaw) & 0xffff) ^ 0x8000) - 0x8000;
+      prevRaw = cur;
+      rawTc[i] = rawTc[i - 1] + delta;
     }
   }
   const timecodes = new Float64Array(n);
