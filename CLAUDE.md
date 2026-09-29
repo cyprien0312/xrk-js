@@ -52,6 +52,9 @@ scripts.
 
 - **Source of truth is libxrk**, specifically `spec/xrk_format.py` (executable wire-format spec) and `src/libxrk/aim_xrk.pyx` (behavioral reference). Golden JSONs in `tests/fixtures/` are generated from Python libxrk via `scripts/make_golden.py`. Any parsing change must keep all golden tests passing.
 - **Quirks are deliberate.** Bad-byte recovery (skip one byte on any parse error), strict struct sizes (CHS=112, LAP=20, ODO%64), timecode dedup rules, and the V3 timecode synthesis (±2 ms hardcoded) all mirror pyx exactly — "fixing" them breaks parity with the reference (and the official DLL).
+- **This port lags upstream.** It was made from an older libxrk; upstream keeps fixing format bugs. Before debugging a
+  parse discrepancy, diff against *current* libxrk (`pip install libxrk`, or clone it and read `spec/docs/companion.md`).
+  The 2026-09-29 GPS-timecode shift (LIMITATIONS §4.5) had already been fixed upstream in 0.13.0.
 - **Node Buffer hazard:** `Buffer.prototype.slice()` returns a view, not a copy. `parseXrk` normalizes input to a plain `Uint8Array` view at entry; keep payload copies as `new Uint8Array(x)`.
 
 ## Layout
